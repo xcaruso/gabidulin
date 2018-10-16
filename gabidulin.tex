@@ -1,0 +1,49 @@
+\documentclass[a4paper]{llncs}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Caruso Xavier \and Durand Amaury}
+\institute{ Instistute : to do}
+
+\title{Gabidulin Codes}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\paragraph{}
+In 1985, Gabidulin Ernst introduced a Reed-Solomon-like code construction in rank metric. This Gabidulin code class use linearised polynomial concept. In 2013, Wachter-Zeh Antonia proposed efficient implementations of operations with linearized polynomials as well as an equivalent of Gao's algorithm for decoding Gabidulin code. Following years, Boucher Delphine and Ulmer Felix have worked on skew coding theory using Ore's polynomials and they have generalized many code class like BCH or Reed-Solomon. In 2015, Robert Gwezheneg expanded Gabidulin construction to skew-polynomials including the characteristic zero. \\
+
+To do later : présenter ce qu'il y a dans cet article. Le faire à la fin pour le détail. \\
+
+\section{Ore polynomials}
+\paragraph{}
+Ore polynomials are a non-commutative generalization of classical polynomials. They are usefull in semi-linear algebra and in the resolution of differential equation. They intervene in the same way as classical polynomials in linear algebra, like endomorphism polynomial or characteristic polynomial. Let's start with a definition 
+
+\begin{defn} {\textbf{Ore polynomial ring}}
+Let $A$ a ring, $\theta$ an endomorphism of $A$ and $\partial$ a $\theta$-derivation, i.e. $\partial(a.b) = \theta(a)\partial(b) + \partial(a)b$. An Ore's ring $A[X, \theta, \partial]$ is the ring of polynomials in $X$ over $A$ with the usual addition and multiplication given by the Ore rule : $$X \times a = \theta(a)X + \partial(a),\ \forall a \in A.$$ 
+An element of this ring is called Ore polynomial. \\
+When $\partial = 0$, Ore ring is called skew polynomial ring and when $A$ is a finite field and $\theta$ the Frobenius morphism, Ore ring is called linearized polynomial ring.
+\end{defn}
+\paragraph{}
+Concept of degree is easily extending to Ore polynomials :
+
+\begin{defn}{\textbf{Degree}}
+Let $P = \sum a_iX^i \in A[X, \theta, \partial]$, the degree of $P$ is the greatest $i$ such as $a_i \ne 0$.
+\end{defn} 
+
+An other object, pseudo-linear map, is interesting to study due to connection with Ore rule. 
+
+\begin{defn}{\textbf{pseudo-linear map}} 
+Let $A$ a ring, $\theta$ an endomorphism of $A$ and $\partial$ a $\theta$-derivation. A pseudo-linear map $u$ is a map verifying $u(ab) = \theta (a)u(b) + \partial(a)b,\  \forall a, b \in A$.
+\end{defn}
+
+We can describle the set of pseudo-linear maps. Let $u$ a pseudo-linear map, to beginning, we'll have to see $u(ab) = \theta(a)u(b) + \partial(a)b$ involves $u$ is of the shape $u = \partial + g$. By replacing this in equation, we have : $$\theta (a)(\partial (b) + g(b)) + \partial (a)b = \partial (ab) +  g(ab) = \theta (a) \partial (b) + \delta (a)b + g(ab)$$ giving us $g(ab) = \theta (a) g(b)$. Thus, we have $u = \partial + c \theta$ with $c \in A$.
+
+To do : morphismes d'évaluation, division euclidienne et conséquences.
+\end{document}
