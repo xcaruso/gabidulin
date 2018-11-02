@@ -1,49 +1,206 @@
 \documentclass[a4paper]{llncs}
+
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{color}
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+\definecolor{todo}{rgb}{0.9,0,0}
+
 \author{Caruso Xavier \and Durand Amaury}
-\institute{ Instistute : to do}
+\institute{Institute : to do}
+
+\def\todo#1{{\color{todo} #1}}
 
 \title{Gabidulin Codes}
 
-\newtheorem{thm}{Theorem}
-\newtheorem{defn}[thm]{Definition}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\id}{\textrm{id}}
+\newcommand{\End}{\textrm{End}}
+\newcommand{\GL}{\textrm{GL}}
+\newcommand{\ev}[1]{\textrm{ev}_{#1}}
+\renewcommand{\mod}{\,\%\,}
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
-\paragraph{}
-In 1985, Gabidulin Ernst introduced a Reed-Solomon-like code construction in rank metric. This Gabidulin code class use linearised polynomial concept. In 2013, Wachter-Zeh Antonia proposed efficient implementations of operations with linearized polynomials as well as an equivalent of Gao's algorithm for decoding Gabidulin code. Following years, Boucher Delphine and Ulmer Felix have worked on skew coding theory using Ore's polynomials and they have generalized many code class like BCH or Reed-Solomon. In 2015, Robert Gwezheneg expanded Gabidulin construction to skew-polynomials including the characteristic zero. \\
 
-To do later : présenter ce qu'il y a dans cet article. Le faire à la fin pour le détail. \\
+In 1985, Gabidulin Ernst introduced a Reed-Solomon-like code 
+construction in rank metric. This Gabidulin code class use linearised 
+polynomial concept. In 2013, Wachter-Zeh Antonia proposed efficient 
+implementations of operations with linearized polynomials as well as an 
+equivalent of Gao's algorithm for decoding Gabidulin code. Following 
+years, Boucher Delphine and Ulmer Felix have worked on skew coding 
+theory using Ore's polynomials and they have generalized many code class 
+like BCH or Reed-Solomon. In 2015, Robert Gwezheneg expanded Gabidulin 
+construction to skew-polynomials including the characteristic zero.
+
+\todo{Présenter ce qu'il y a dans cet article. Le faire à la fin 
+pour le détail.}
 
 \section{Ore polynomials}
-\paragraph{}
-Ore polynomials are a non-commutative generalization of classical polynomials. They are usefull in semi-linear algebra and in the resolution of differential equation. They intervene in the same way as classical polynomials in linear algebra, like endomorphism polynomial or characteristic polynomial. Let's start with a definition 
 
-\begin{defn} {\textbf{Ore polynomial ring}}
-Let $A$ a ring, $\theta$ an endomorphism of $A$ and $\partial$ a $\theta$-derivation, i.e. $\partial(a.b) = \theta(a)\partial(b) + \partial(a)b$. An Ore's ring $A[X, \theta, \partial]$ is the ring of polynomials in $X$ over $A$ with the usual addition and multiplication given by the Ore rule : $$X \times a = \theta(a)X + \partial(a),\ \forall a \in A.$$ 
-An element of this ring is called Ore polynomial. \\
-When $\partial = 0$, Ore ring is called skew polynomial ring and when $A$ is a finite field and $\theta$ the Frobenius morphism, Ore ring is called linearized polynomial ring.
-\end{defn}
-\paragraph{}
-Concept of degree is easily extending to Ore polynomials :
+Throughout this article, we use the following notation: $K$ is a field, 
+$\theta : K \to K$ be a ring homomorphism and $\partial : K \to K$ be a 
+$\theta$-derivation, i.e. an additive mapping such that $\partial(ab) = 
+\theta(a)\partial(b) + \partial(a)b$ for all $a,b \in K$.
 
-\begin{defn}{\textbf{Degree}}
-Let $P = \sum a_iX^i \in A[X, \theta, \partial]$, the degree of $P$ is the greatest $i$ such as $a_i \ne 0$.
-\end{defn} 
+We shall denote by $F$ the subfield of $K$ consisting of elements
+$a$ such that $\theta(a) = a$ and $\partial(a) = 0$. 
+\textbf{We will always assume that the extension $K/F$ is finite.}
+This implies in particular that $\theta$ has finite order and thus
+is bijective.
 
-An other object, pseudo-linear map, is interesting to study due to connection with Ore rule. 
+%Ore polynomials are a non-commutative generalization of classical 
+%polynomials. They are usefull in semi-linear algebra and in the 
+%resolution of differential equation. They intervene in the same way as 
+%classical polynomials in linear algebra, like endomorphism polynomial or 
+%characteristic polynomial. Let's start with a definition
 
-\begin{defn}{\textbf{pseudo-linear map}} 
-Let $A$ a ring, $\theta$ an endomorphism of $A$ and $\partial$ a $\theta$-derivation. A pseudo-linear map $u$ is a map verifying $u(ab) = \theta (a)u(b) + \partial(a)b,\  \forall a, b \in A$.
-\end{defn}
+\begin{definition}[Ore polynomial ring]
+The ring of Ore polynomials $K[X; \theta, \partial]$ is the ring 
+whose elements are polynomials in $X$ over $A$ endowed with the usual 
+addition and with the multiplication defined by the rule:
+$$X \times a = \theta(a)X + \partial(a), \quad \forall a \in A.$$
+%
+%An element of this ring is called Ore polynomial.
+%
+%When $\partial = 0$, Ore ring is called skew polynomial ring and when 
+%$A$ is a finite field and $\theta$ the Frobenius morphism, Ore ring is 
+%called linearized polynomial ring.
+\end{definition}
 
-We can describle the set of pseudo-linear maps. Let $u$ a pseudo-linear map, to beginning, we'll have to see $u(ab) = \theta(a)u(b) + \partial(a)b$ involves $u$ is of the shape $u = \partial + g$. By replacing this in equation, we have : $$\theta (a)(\partial (b) + g(b)) + \partial (a)b = \partial (ab) +  g(ab) = \theta (a) \partial (b) + \delta (a)b + g(ab)$$ giving us $g(ab) = \theta (a) g(b)$. Thus, we have $u = \partial + c \theta$ with $c \in A$.
+The notion of degree extends \emph{verbatim} to Ore polynomials: if $P = 
+\sum a_iX^i$ is an Ore polynomial, its degree is the largest integer $i$ 
+for which $a_i \neq 0$.
+Besides, one can prove the existence of a right Euclidean division for 
+Ore polynomials: if $A, B \in K[X;\theta,\partial]$ with $B \neq 0$, 
+there exist unique $Q, R \in K[X;\theta,\partial]$ with $A = QB+R$ and 
+$\deg R < \deg B$. This has the usual consequences: the noncommutative
+ring $K[X;\theta,\partial]$ is left-principal, right \textsc{gcd}s and
+left \textsc{lcm}s are well defined and can be computed by Euclidean
+algorithm. 
+Similarly, left Euclidean divisions, left \textsc{gcd}s and right 
+\textsc{lcm}s do exist (since our general assumptions imply that
+$\theta$ is bijective).
 
-To do : morphismes d'évaluation, division euclidienne et conséquences.
+\medskip
+
+\noindent
+\textit{Notation:}
+In what follows, we will denote by $A \mod B$ the remainder in the 
+right division of $A$ by $B$.
+
+\subsubsection*{Pseudo-linear morphisms.}
+
+Another important notion is that of pseudo-linear morphisms. It is 
+defined as follows:
+
+\begin{definition}[Pseudo-linear morphism]
+Let $M$ and $N$ be two vector spaces over $K$.
+A \emph{pseudo-linear morphism} $u : M\to N$ is a map verifying 
+$u(ax) = \theta(a)u(x) + \partial(a)x$ for all $a \in K$ and $x \in M$.
+\end{definition}
+
+We observe that any pseudo-linear morphism is \emph{a fortiori}
+$F$-linear (where $F$ is defined at the beginning of this section).
+
+Pseudo-linear morphisms are relevant in the context of Ore polynomials 
+because the Ore multiplication reflects the composition rule of 
+pseudo-linear morphisms. More precisely, given a pseudo-linear 
+endomorphism $u : M \to M$ and a Ore polynomial $P = \sum_i a_i X^i \in 
+K[X;\theta,\partial]$, one defines $P(u) = \sum_i a_i u^i$. One then 
+easily checks that $P(u) \circ Q(u) = (PQ)(u)$ where the multiplication 
+on the right hand size is the Ore multiplication. In other words, 
+denoting by $\End_F(M)$ the ring of $F$-linear maps from $M$ to itself, 
+the ``evaluation'' mapping
+$$\ev{u} : \quad K[X;\theta,\partial] \to \End_F(M), \quad
+P(X) \mapsto P(u)$$
+is a ring homomorphism for any pseudo-linear endomorphism $u$.
+
+The case where $M$ is $K$ itself deserves particular attention.
+Indeed, we first observe that evaluation is then closely related to
+Euclidean division thanks to the formula:
+$$\textstyle \ev{u}(P)(a) = 
+a \cdot P \mod \big(X - \frac{u(a)}{a}\big)$$
+for any pseudo-linear endomorphism $u$ of $K$, any $P \in K[X;\theta,
+\partial]$ and any $a \in K$. Second, we have a complete classification
+of pseudo-linear endomorphisms of $K$.
+
+\begin{proposition}
+The pseudo-linear endomorphisms of $K$ are exactly the maps of
+the form $\partial + c\theta$ with $c \in K$.
+\end{proposition}
+
+\begin{proof}
+It is easily checked that $\partial + c\theta$ is pseudo linear
+for all $c\in A$. Conversely, let $u$ be a pseudo-linear morphism.
+Set $g = u - \partial$. It is easily checked that $g$ is 
+$\theta$-semi linear, i.e. $g(ab) = \theta(a) g(b)$ for all $a, b 
+\in K$. Applying this with $b = 1$ and letting $c = g(1)$, we end
+up with $g = c \theta$ and so $u = \partial + c\theta$.
+\end{proof}
+
+In what follows, we will often use the notation $\ev c$ in place of 
+$\ev{\partial + c \theta}$. The properties of $\ev c$ are summarized
+in the next proposition.
+
+\begin{proposition}
+\label{prop:evc}
+\noindent
+\textit{1.}
+For all $c \in K$, the ring homomorphism $\ev{c}$ is surjective
+and its kernel is a principal ideal generated by a polynomial of
+degree $[K:F]$ with coefficients in $F$.
+
+\noindent
+\textit{2.}
+For $c_1, c_2 \in K$, the equality $\ker \ev{c_1} = \ker \ev{c_2}$ holds 
+if and only if there exists $a \in K$, $a \neq 0$ such that 
+\begin{equation}
+\label{eq:}
+\ev{c_1}(P) = m_a^{-1} \circ \ev{c_2}(P) \circ m_a
+\end{equation}
+for all $P \in K[X;\theta,\partial]$, where $m_a : K \to K$ is the
+multiplication by $a$.
+\end{proposition}
+
+When $\ker \ev{c_1} = \ker \ev{c_2}$, we shall say that $c_1$
+and $c_2$ are \emph{equivalent}. Evaluating~\eqref{eq:} at $1$,
+we find that $c_1$ and $c_2$ are equivalent if and only if there
+exists $a \in K$, $a \neq 0$ such that
+$c_1 a = c_2 \theta(a) + \partial(a)$. In particular, we notice 
+that the equivalence class of $c \in K$ is exactly the image of 
+$x \mapsto \frac{(\partial + c\theta)(x)} x$.
+
+Moreover, when $\theta = \id$, the condition resumes to the equality 
+$c_1 = c_2 + \frac{\partial(a)} a$, i.e. to the fact that $c_1 - c_2$ is 
+a logarithmic derivative. On the other hand, when $\partial = 0$, the 
+condition is equivalent to $c_1 = c_2 \cdot \frac{\theta(a)}a$, that is 
+to the fact that $c_1$ and $c_2$ has the same norm over $F$.
+
+
+
+\section{Generalized Gabidulin codes}
+
+\todo{\begin{itemize}
+\item définition, longueur, dimension
+\item distance rang (ou Hamming-rang selon le cas)
+\item calcul de la distance minimale
+\item algorithme de décodage de Gao
+\item donner des exemples : 1) sur les corps finis et 2) avec des dérivations
+\end{itemize}}
+
+\section{Implementation}
+
+\todo{\begin{itemize}
+\item dire ce qu'on a implémenté
+\item donner quelques benchmarks
+\end{itemize}}
+
 \end{document}
