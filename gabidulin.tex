@@ -207,6 +207,14 @@ Let $Gab_c[n,k,g]$ a Gabidulin code and let $a = (a_1, \dots, a_n) \in Gab_c[n,k
 \end{proof}
 
 
+To decode Gabidulin codes, we have a generalized Gao algorithm. Let $Gab_c[n,k,g]$ a gabidulin code and $b = \{b_1, \dots, b_n\} \in K^n$ a received vector. To decode $b$ we proceed as follows.
+
+\begin{itemize}
+\item Step 0, Annihilator : Find the unique Ore polynomial $G_0$ as $ev_c(G_0)(g_i) = 0$ for all $i \in \{1, \dots, n\}$.
+\item Step 1, Interpolation : Find the unique Ore polynomial $G_1$ as $ev_c(G_1)(g_i) = b_i$ and $\deg(G_1) \leqslant n-1$.
+\item Step 2, Partial gcd : Apply the extend Euclidian algorithm to $G_0$ and $G_1$. Stop when the remainder $G$ has degree $< \frac{n+k}{2}$. If we have to this step $uG_0 + vG_1 = G$.
+\item Step 3, Long left division : Apply a left division to $G$ by $v$, say $G = vf_1 + r$. If $r =0$ and $\deg(f_1) < k$ then the word is $f_1$ else, that more than $\frac{d-1}{2}$ errors occurred. 
+\end{itemize}
 
 
 \todo{\begin{itemize}
