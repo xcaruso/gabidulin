@@ -203,14 +203,17 @@ Gabidulin codes are Maximal Rank Distance code (MRD code) i.e. the minimum rank 
 \end{proposition}
 
 \begin{proof}
-Let $Gab_c[n,k,g]$ a Gabidulin code and let $a = (a_1, \dots, a_n) \in Gab_c[n,k,g]$ a non-zero word as rank weight $w$. So, there is a Ore polynomial $P$ as $\deg(P) = w$ and $ev_c(P)(a_i) = 0$ for all $i \in \{1, \dots, n\}$. However, $a$ is a word of Gabidulin Code, so there is a Ore polynomial $Q$ as $\deg(Q) \leqslant k-1$ and $a_i = ev_c(Q)(g_i)$. We known that $ev_c(PQ)(g_i) = ev_c(P)(a_i) = 0$ and thus the Ore polynomial PQ is an annihilator polynomial of $n$ elements linearly independant over $F$. So, we have $\deg(PQ) \geqslant n$. Moreover, by construction we have $\deg(PQ) = w + k -1$, so we have $n \leqslant w+k-1$ i.e. $w \geqslant n-k+1$.
+Let $Gab_c[n,k,g]$ a Gabidulin code and let $a = (a_1, \dots, a_n) \in Gab_c[n,k,g]$ a non-zero word as rank weight $w$. So, there is a Ore polynomial $P$ as $\deg(P) = w$ and $ev_c(P)(a_i) = 0$ for all $i \in \{1, \dots, n\}$. However, $a$ is a word of Gabidulin Code, so there is a Ore polynomial $Q$ as $\deg(Q) \leqslant k-1$ and $a_i = ev_c(Q)(g_i)$. We known that $ev_c(PQ)(g_i) = ev_c(P)(a_i) = 0$ and thus the Ore polynomial PQ is an annihilator polynomial of $n$ elements linearly independant over $F$. So, we have $\deg(PQ) \geqslant n$. Moreover, by construction we have $\deg(PQ) = w + k -1$, so we have $n \leqslant w+k-1$ i.e. $w \geqslant n-k+1$. The equality is given by Singleton bound.
 \end{proof}
+
+
 
 
 \todo{\begin{itemize}
 %\item définition, longueur, dimension
 %\item distance rang (ou Hamming-rang selon le cas)
-\item calcul de la distance minimale
+%\item calcul de la distance minimale
+\item Liens entre les def/prop
 \item algorithme de décodage de Gao
 \item donner des exemples : 1) sur les corps finis et 2) avec des dérivations
 \end{itemize}}
