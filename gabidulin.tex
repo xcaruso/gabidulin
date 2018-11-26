@@ -96,6 +96,10 @@ $\theta$ is bijective).
 In what follows, we will denote by $A \mod B$ the remainder in the 
 right division of $A$ by $B$.
 
+\begin{example}
+Let $K = GF_7(t)$ the fraction field of univariate polynomial on the field at 7 elements. Let $\partial = \frac{\partial}{\partial t}$ a classic polynomial derivation. In this article, we will interesting in this red thread example : $K[X, \id, \partial] = GF_7(t)[X, \id, \frac{\partial}{\partial t}]$. 
+\end{example}
+
 \subsubsection*{Pseudo-linear morphisms.}
 
 Another important notion is that of pseudo-linear morphisms. It is 
@@ -143,7 +147,7 @@ for all $c\in A$. Conversely, let $u$ be a pseudo-linear morphism.
 Set $g = u - \partial$. It is easily checked that $g$ is 
 $\theta$-semi linear, i.e. $g(ab) = \theta(a) g(b)$ for all $a, b 
 \in K$. Applying this with $b = 1$ and letting $c = g(1)$, we end
-up with $g = c \theta$ and so $u = \partial + c\theta$.
+up with $g = c \theta$ and so $u = \partial + c\theta$. \qed
 \end{proof}
 
 In what follows, we will often use the notation $\ev c$ in place of 
@@ -209,7 +213,7 @@ Gabidulin codes are Maximal Rank Distance code (MRD code) i.e. the minimum rank 
 \end{proposition}
 
 \begin{proof}
-Let $Gab_c[n,k,g]$ a Gabidulin code and let $a = (a_1, \dots, a_n) \in Gab_c[n,k,g]$ a non-zero word as rank weight $w$. So, there is a Ore polynomial $P$ as $\deg(P) = w$ and $\ev{c}(P)(a_i) = 0$ for all $i \in \{1, \dots, n\}$. However, $a$ is a word of Gabidulin Code, so there is a Ore polynomial $Q$ as $\deg(Q) \leqslant k-1$ and $a_i = \ev{c}(Q)(g_i)$. We known that $\ev{c}(PQ)(g_i) = \ev{c}(P)(a_i) = 0$ and thus the Ore polynomial PQ is an annihilator polynomial of $n$ elements linearly independant over $F$. So, we have $\deg(PQ) \geqslant n$. Moreover, by construction we have $\deg(PQ) = w + k -1$, so we have $n \leqslant w+k-1$ i.e. $w \geqslant n-k+1$. The equality is given by Singleton bound.
+Let $Gab_c[n,k,g]$ a Gabidulin code and let $a = (a_1, \dots, a_n) \in Gab_c[n,k,g]$ a non-zero word as rank weight $w$. So, there is a Ore polynomial $P$ as $\deg(P) = w$ and $\ev{c}(P)(a_i) = 0$ for all $i \in \{1, \dots, n\}$. However, $a$ is a word of Gabidulin Code, so there is a Ore polynomial $Q$ as $\deg(Q) \leqslant k-1$ and $a_i = \ev{c}(Q)(g_i)$. We known that $\ev{c}(PQ)(g_i) = \ev{c}(P)(a_i) = 0$ and thus the Ore polynomial PQ is an annihilator polynomial of $n$ elements linearly independant over $F$. So, we have $\deg(PQ) \geqslant n$. Moreover, by construction we have $\deg(PQ) = w + k -1$, so we have $n \leqslant w+k-1$ i.e. $w \geqslant n-k+1$. The equality is given by Singleton bound. \qed
 \end{proof}
 
 
