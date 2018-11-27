@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{enumerate}
 \usepackage{color}
 \usepackage[english]{babel}
 \usepackage{microtype}
@@ -11,18 +12,21 @@
 \definecolor{todo}{rgb}{0.9,0,0}
 
 \author{Caruso Xavier \and Durand Amaury}
-\institute{Institute : to do}
+\institute{CNRS, Institut Mathématique de Bordeaux\\
+Rennes ? Versailles ? Besançon ?}
 
 \def\todo#1{{\color{todo} #1}}
 
-\title{Gabidulin Codes}
+\title{Reed--Solomon--Gabidulin Codes}
 
 \newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
 \newcommand{\FF}{\mathbb F}
 
 \newcommand{\id}{\textrm{\rm id}}
 \newcommand{\End}{\textrm{\rm End}}
 \newcommand{\GL}{\textrm{\rm GL}}
+\newcommand{\Frob}{\textrm{\rm Frob}}
 \newcommand{\ev}[1]{\textrm{\rm ev}_{#1}}
 \renewcommand{\mod}{\,\%\,}
 
@@ -31,7 +35,7 @@
 
 \newcommand{\bc}{\textbf{c}}
 \newcommand{\bg}{\textbf{g}}
-\newcommand{\Gab}{\textrm{\rm Gab}}
+\newcommand{\RSG}{\textrm{\rm RSG}}
 \newcommand{\wH}{w_{\textrm{\rm H}}}
 \newcommand{\wrH}{w_{\textrm{\rm rH}}}
 \newcommand{\drH}{d_{\textrm{\rm rH}}}
@@ -64,9 +68,9 @@ $\theta$-derivation, i.e. an additive mapping such that $\partial(ab) =
 
 We shall denote by $F$ the subfield of $K$ consisting of elements
 $a$ such that $\theta(a) = a$ and $\partial(a) = 0$. 
-\textbf{We will always assume that the extension $K/F$ is finite.}
-This implies in particular that $\theta$ has finite order and thus
-is bijective.
+\textbf{We will always assume that the extension $K/F$ is finite}
+and will denote by $r$ its degree. Our assumption implies in particular 
+that $\theta$ has finite order and thus is bijective.
 
 %Ore polynomials are a non-commutative generalization of classical 
 %polynomials. They are usefull in semi-linear algebra and in the 
@@ -88,10 +92,41 @@ $$X \times a = \theta(a)X + \partial(a), \quad \forall a \in A.$$
 \end{definition}
 
 \begin{example}
-\todo{Donner les exemples :
-(1)~$\FF_{q^m}[X,\theta,0]$ avec $\theta(x) = x^q$ et
-(2)~$\FF_p(t)[X,\id,\frac d{dt}]$.}
+\label{ex:Ore}
+Throughout this article, we will illustrate all our constructions 
+with two following examples:
+\begin{itemize}
+\renewcommand{\itemsep}{1ex}
+\item[(1)] (This setting is the one in which Gabidulin codes were
+first defined by Gabidulin in \cite{gabidulin}, with a slightly different
+vocabulary.)
+Let $p$ be a prime number, $q$ be a power of $p$ and $r$
+be a positive integer. We let $\FF_{q^r}$ denote a finite field
+with cardinality $q^m$. We endow it with the Frobenius $\Frob_q :
+x \mapsto x^q$. The first Ore ring we will be interested in is
+$\FF_{q^r}[X ; \Frob_q, 0]$. In this setting, the subfield $F$ of 
+$K = \FF_{q^r}$ we have introduced is $\FF_q$. The degree of the
+extension $K/F$ is then $r$.
+\item[(1')] More generally, one can pick an arbitrary field $K$,
+endow it with a finite order automorphism $\theta$ and consider the
+Ore ring $K[X,\theta,0]$. Beyond the case of finite fields, natural
+examples are cyclotomic extensions of $\QQ$ or Kummer extensions.
+This case was addressed in Robert's thesis \cite{robert}.
+\item[(2)] Let $k$ be a field of characteristic $p$. We consider the field 
+$K = k(t)$ and endow it with the natural derivation $\frac d{dt}$. We can 
+then form the Ore ring $k(t)[X,\id,\frac d{dt}]$. Here the subfield $F$ 
+of $K$ is $k(t^p)$ and the degree of the extension $K/F$ is then $p$.
+\end{itemize}
 \end{example}
+
+%\begin{example}
+%Let $K = GF_7(t)$ the fraction field of univariate polynomial on the 
+%field at 7 elements. Let $\partial = \frac{\partial}{\partial t}$ a 
+%classic polynomial derivation. In this article, we will interesting in 
+%this red thread example : $K[X, \id, \partial] = GF_7(t)[X, \id, 
+%\frac{\partial}{\partial t}]$, and $F$ is the subfield $F = \{x \in 
+%GF_7(t) \ | \ \frac{\partial x}{\partial t} = 0\} = GF_7(t^7)$.
+%\end{example}
 
 The notion of degree extends \emph{verbatim} to Ore polynomials: if $P = 
 \sum a_iX^i$ is an Ore polynomial, its degree is the largest integer $i$ 
@@ -114,22 +149,61 @@ $\theta$ is bijective).
 In what follows, we will denote by $A \mod B$ the remainder in the 
 right division of $A$ by $B$.
 
-\todo{Rappeler des choses sur le centre de $K[X,\theta,\partial]$:
-c'est un anneau de polynôme sur $F$ engendré par un polynôme $Z(X)$
-de degre $[K:F]$ (défini à une constante additive dans $F$ près).}
+\subsubsection*{The centre.}
+
+Recall that the centre of a noncommutative ring $A$ is by definition
+the subset of $A$ consisting of elements $x$ such that $xy = yx$ for
+all $y \in A$. We observe in particular that the centre of $A$ is a
+commutative subring of $A$.
+In the case of Ore polynomials, the centre can actually be computed
+precisely \cite{}. 
+In what follows, we will not need a complete description but only
+the general structure of the centre as given by the next proposition.
+
+\begin{proposition}
+\label{prop:centre}
+There exists a central Ore polynomial $Z(X) \in K[X; \theta, \partial]$ of 
+degree $r$ such that the centre of $K[X; \theta, \partial]$ is 
+$F[Z(X)]$, \emph{i.e.} the subset of Ore polynomials that can be
+written as a polynomial in $Z(X)$ with coefficient in $F$.
+\end{proposition}
+
+We observe that the equality:
+$$a_0 + a_1 Z(X) + \cdots + a_d Z(X)^d 
+= b_0 + b_1 Z(X) + \cdots + a_e Z(X)^e$$
+implies readily that $d = e$ (compare the degrees) and $a_i = b_i$ 
+for all $i$. As a consequence the centre $F[Z(X)]$ is an actual
+(commutative) ring of univariate polynomials with coefficients in $F$.
+
+On the other hand, we draw the attention of the reader to the fact that 
+the properties of Proposition~\ref{prop:centre} do not determine $Z(X)$ 
+uniquely but only up to an additive constant in $F$.
 
 \begin{example}
-\todo{Dire ce qu'est le polynôme $Z(X)$ pour les exemples (1) et (2) ; 
-en fait, à chaque fois, on peut prendre $Z(X) = X^{[K:F]}$.}
-\end{example}
+\label{ex:centre}
+We continue Example \ref{ex:Ore}. In the settings~(1) and~(1'), it is 
+easily seen that the centre of $K[X;\theta,0]$ is $F[X^r]$.
+In the setting~(2), the centre of $k(t)[X; \id, \frac d{dt}]$ (where
+$k$ is a field of characteristic $p$) is $k(t^p)[X^p]$. Let us prove
+the latter assertion. First we observe that $t^p$ and $X^p$ are 
+central elements. Indeed $t^p$ is central because its derivative
+vanishes. On the other hand, for all $f \in k(t)$, iterating the 
+Leibniz relation, we get:
+$$f X^p = \sum_{i=0}^p \binom i p \frac{d^i f}{dt^i} X^{p-i}
+= f X^p + \frac{d^p f}{dt^p}$$
+and we check that the last term $\frac{d^p f}{dt^p}$ vanishes.
 
-\begin{example}
-Let $K = GF_7(t)$ the fraction field of univariate polynomial on the 
-field at 7 elements. Let $\partial = \frac{\partial}{\partial t}$ a 
-classic polynomial derivation. In this article, we will interesting in 
-this red thread example : $K[X, \id, \partial] = GF_7(t)[X, \id, 
-\frac{\partial}{\partial t}]$, and $F$ is the subfield $F = \{x \in 
-GF_7(t) \ | \ \frac{\partial x}{\partial t} = 0\} = GF_7(t^7)$.
+\noindent
+Conversely, let $P(X) = f_0 + f_1 X + \cdots + f_d X^d \in k(t)[X; 
+\id, \frac d{dt}]$ be a central element. From $X P(X) = P(X) X$, we
+derive $\frac {df_i}{dt} = 0$ for all $i$, for what it follows $f_i 
+\in k(t^p)$ for all $i$. Up to subtracting to $P(X)$ a central element,
+we can assume without loss of generality that $a_i = 0$ as soon as 
+$p$ divides $i$. Comparing the coefficients in $X^{d-1}$
+in $t P(X)$ and $P(X) t$, we obtain $d f_d = 0$. Thus $f_d = 0$
+(whether or not $p$ divides $d$).
+Repeating the argument again and again, we find $P(X) = 0$ as 
+expected.
 \end{example}
 
 \subsubsection*{Pseudo-linear morphisms.}
@@ -201,11 +275,6 @@ and its kernel is a principal ideal generated by $Z(X) - N(c)$
 for some element $N(c) \in F$.
 \end{proposition}
 
-\begin{example}
-For $c = 0 \in GF_7$, $\ker (\ev 0)$ is generated by the polynomial $X^7$. Indeed, we have $\ev 0 (X^7) = (\frac{\partial}{\partial t})^7$ and so, for all $P \in F = GF_7(t^7)$, $\ev 0 (P) = 0$.
-\end{example}
-
-
 \begin{remark}
 The function $N$ defined by Proposition \ref{prop:evc} above is not 
 canonical since it depends on the choice of the constant coefficient 
@@ -213,7 +282,9 @@ of $Z(X)$. Two different choices lead to functions $N$ and $N'$ such
 that $N' = N + a$ for some constant $a \in F$.
 \end{remark}
 
-\todo{Dire ce qu'est la fonction $N$ pour les exemples (1) et (2).}
+%\begin{example}
+%For $c = 0 \in GF_7$, $\ker (\ev 0)$ is generated by the polynomial $X^7$. Indeed, we have $\ev 0 (X^7) = (\frac{\partial}{\partial t})^7$ and so, for all $P \in F = GF_7(t^7)$, $\ev 0 (P) = 0$.
+%\end{example}
 
 \begin{definition}
 \label{def:equiv}
@@ -222,13 +293,47 @@ We say that $c_1$ and $c_2$ are \emph{equivalent} if
 $\ker \ev{c_1} = \ker \ev{c_2}$ or, equivalently, $N(c_1) = N(c_2)$.
 \end{definition}
 
-Using Noether--Skolem Theorem, one can prove that $c_1$ and $c_2$ are 
-equivalent if and only if there exists $a \in K$, $a \neq 0$ such that 
-$c_1 a = c_2 \theta(a) + \partial(a)$. In particular, we notice that the 
-equivalence class of $c \in K$ is exactly the image of $x \mapsto 
-\frac{(\partial + c\theta)(x)} x$.
+\noindent
+Using Noether--Skolem Theorem, one can prove the following
+characterization:
 
-\todo{Détailler la condition ci-dessus sur les exemples (1) et (2).}
+\begin{lemma}
+\label{lem:equiv}
+The elements $c_1$ and $c_2$ are equivalent if and only if there exists 
+$a \in K$, $a \neq 0$ such that $c_1 a = c_2 \theta(a) + \partial(a)$.
+
+\noindent
+In particular, the equivalence class of $c \in K$ is exactly the image 
+of $x \mapsto \frac{(\partial + c\theta)(x)} x$.
+\end{lemma}
+
+\begin{example}
+\label{ex:equiv}
+Let us first focus on the settings~(1) and~(1') of Example~\ref{ex:Ore}. 
+The subset $K_\good$ is then $K \backslash \{0\}$. Moreover if we have 
+chosen $Z(X) = X^r$ (see Example~\ref{ex:centre}), it is not difficult
+to prove that the map $N$ is the norm of $K$ over $F$.
+In this context, the characterization of Lemma~\ref{lem:equiv} is 
+a classical consequence of Hilbert 90 theorem which says that an
+element has norm $1$ if and only if it can be written 
+$\frac{\theta(a)} a$ for some $a \neq 0$.
+
+\noindent
+When $K = \FF_{q^m}$ and $\theta = \Frob_q$, we have 
+$N(c) = c^{1 + q + q^2 + \cdots + q^{m-1}}$. In this case, the image of 
+$N$ is $\FF_q^\star$ and there is exactly $q{-}1$ equivalence classes 
+for the equivalence relation introduced in Definition~\ref{def:equiv}.
+
+In the setting~(2), we have $K_\good = K$. Moreover, with the 
+normalization $Z(X) = X^p$, one can prove\footnote{Through the proof is 
+not obvious.} that $N(f) = \frac {d^{p-1}f}{dt^{p-1}} + f^p$ for any $f 
+\in k(t)$. Here, Lemma~\ref{lem:equiv} asserts that $N(f) = N(g)$ if
+and only if the difference $f-g$ is a logarithmic derivative.
+It is easily seen that a polynomial cannot be a logarithmic derivative.
+Consequently the elements of $k[t]$ are pairwise nonequivalent,
+implying in particular that there are infinitely many equivalence
+classes for this relation.
+\end{example}
 
 \begin{proposition}
 \label{prop:evbc}
@@ -253,7 +358,7 @@ assertion about the kernel is proved. The surjectivity of $\ev\bc$
 follows by comparing dimensions.
 \end{proof}
 
-\section{Generalized Gabidulin codes}
+\section{Reed--Solomon--Gabidulin codes}
 
 \todo{Écrire une introduction}
 
@@ -287,7 +392,7 @@ can be rewritten in terms of Euclidean divisions. More precisely,
 for $1 \leq i \leq m$ and $1 \leq j \leq n_i$, letting:
 \begin{equation}
 \label{eq:aij}
-a_{i,j} = \frac{(\partial + c_i\theta)(g_{i,j})}{g_{i,j}}.
+a_{i,j} = \frac{(\partial + c_i\theta)(g_{i,j})}{g_{i,j}}
 \end{equation}
 we have $\ev{c_i}(g_{i,j}) = g_{i,j} \cdot P \mod (X - a_{i,j})$.
 It is worth remarking that the assumption we made on the $c_i$'s
@@ -322,31 +427,48 @@ which is a contradiction since the latter polynomial has degree $rm >
 \deg L'$.
 \end{proof}
 
-\todo{Donner des exemples. Et pour chacun, calculer les $a_{i,j}$
-correspondants.}
+\begin{example}
+\label{ex:aij}
+Consider first the setting~(1) of Example~\ref{ex:Ore}.
+Let $g$ be a multiplicative generator of $\FF_{q^r}^\star$. Its norm
+over $\FF_q$ is a multiplicative generator of $\FF_q^\star$. By what
+we did in Example~\ref{ex:equiv}, the elements $c_i = g^i$ for $0 
+\leq i < q-1$ are pairwise nonequivalent. Moreover $(1, g, \ldots,
+g^{r-1})$ is a basis of $\FF_{q^m}$ over $\FF_q$. One can then
+take $n_i = r$ for all $i$ and $g_{i,j} = g^j$. With these parameters,
+we easily compute $a_{i,j} = c_i \cdot \Frob_q(g_{i,j}) \cdot g_{i,j}^{-1}
+= g^{i + (q-1)j}$. 
+%The set of all $a_{i,j}$'s is then the set of 
+%$g^e$'s for $0 \leq e < (q{-}1)r$.
+
+We now move to the setting~(2). By Example~\ref{ex:equiv} again,
+we can take any family $(c_1, \ldots, c_m)$ of pairwise distinct
+polynomials. Moreover a basis of $k(t^p)$ over $k(t)$ is obviously
+$(1, t, \ldots, t^{p-1})$. Therefore, we can take $n_i = p$ and
+$g_{i,j} = t^{j-1}$ for $1 \leq j \leq p$. A direct computation
+leads to $a_{i,j} = \frac{j-1} t + c_i$.
+\end{example}
 
 \subsubsection*{Definition and first properties.}
 
 We are now ready to define Gabidulin codes in the extended framework
 discussed in the introduction of this section.
 
-\begin{definition}%[Generalized Gabidulin Code]
-With the previous notations, the \emph{generalized Gabidulin code} 
-$\Gab_{k,\bc,\bg}$ associated to $\bc$ and $\bg$ is the image of 
-$\gamma_{k,\bc,\bg}$.
-\end{definition}
+\begin{definition}
+With the previous notations, the \emph{Reed--Solomon--Gabidulin (RSG for 
+short) code} $\RSG_{k,\bc,\bg}$ associated to $\bc$ and $\bg$ is the 
+image of $\gamma_{k,\bc,\bg}$. \end{definition}
 
 \begin{example}
 To complete the red thread example, we'll considere the Gabidulin Code : $Gab_0[7,3,g]$ where $g = (t^i)$ for $i \in \{0, \dots, 6\}$. It is of length  $7$ anf dimension $3$.
 \end{example}
 
-It is well known that the relevant distance for Gabidulin codes is 
-not the Hamming distance but the rank distance. In the context of 
-generalized Gabidulin codes introduced above, we shall need another
-distance which is a mixture between Hamming and rank distance. It is
-defined as follows.
+It is well known that the relevant distance for Gabidulin codes is not 
+the Hamming distance but the rank distance. In the context of Gabidulin 
+codes introduced above, we shall need another distance which is a 
+mixture between Hamming and rank distance. It is defined as follows.
 
-\begin{definition}%[Rank weight]
+\begin{definition}
 Let $x = (x_{i,j})_{1 \leq i \leq m, \; 1 \leq j \leq n_i} \in
 K^{n_1} \times K^{n_2} \times \cdots \times K^{n_m}$.
 The \emph{rank-Hamming weight} of $x$ is:
@@ -363,21 +485,26 @@ sense that, for all $x \in K^{n_1} \times \cdots \times K^{n_m}$,
 we have $\wrH(x) \leq \wH(x)$ if $\wH$ denotes the Hamming weight.
 \end{remark}
 
-\todo{Faire remarquer que si $m = 1$, on retrouve les codes de 
-Gabidulin classiques (et les codes de Gabidulin généralisés de Robert)
-avec la distance rang classique.
-Au contraire, si $\theta = \id$ et $\partial = 0$ (et donc $F = K$),
-on retrouve les codes de Reed--Solomon avec la distance de Hamming
-usuelle.}
+The RSG codes we have defined extend the classical notion of Gabidulin 
+codes introduced in \cite{gabidulin}. More precisely, the latter correspond to 
+the case where $m = 1$, $\partial = 0$ and $K$ is a finite field. 
+Relaxing the assumption on $K$, we obtain the generalized Gabidulin 
+codes defined by Robert in his thesis \cite{robert}. In particular, in this 
+case, the rank-Hamming distance is the usual rank distance.
+
+On the other hand, when $\theta = \id$ and $\partial = 0$ (that is $F = 
+K$), the notion of RSG code is nothing but the standard notion of 
+Reed--Solomon code and the rank-Hamming distance reduces to the 
+usual Hamming distance.
 
 \begin{proposition}
-The generalized Gabidulin code $\Gab_{k,\bc,\bg}$ has length $n$,
+The code $\RSG_{k,\bc,\bg}$ has length $n$,
 dimension $k$ and minimal distance $d = n - k + 1$.
 \end{proposition}
 
 
 \begin{proof}
-Let $x \in \Gab_{k,\bc,\bg}$ be a nonzero codeword. Let $P \in 
+Let $x \in \RSG_{k,\bc,\bg}$ be a nonzero codeword. Let $P \in 
 K[X;\theta,\partial]$ with $\deg P < k$ and $\gamma_{k,\bc,\bg}(P) = x$.
 Let $E_i$ denote the $F$-span of $g_{i,1}, \ldots, g_{i,n_i}$. By
 definition of the rank-Hamming weight, we know that
@@ -399,17 +526,17 @@ vanishes on all $h_{i,j}$'s, the Ore polynomial $P$ has to be a
 multiple of $L$. Thus $k > \deg P \geq \sum_{i=1}^m \delta_i$.
 Comparing with \eqref{eq:sumdeltai}, we find $k > n - \wrH(x)$,
 \emph{i.e.} $\wrH(x) \geq n - k + 1$.
-We have then proved that the minimal distance of $\Gab_{k,\bc,\bg}$
+We have then proved that the minimal distance of $\RSG_{k,\bc,\bg}$
 is at least $n - k + 1$.
 The inequality in the other direction, together with the fact that
-$\Gab_{k,\bc,\bg}$ has dimension $k$, now follow from Singleton bound.
+$\RSG_{k,\bc,\bg}$ has dimension $k$, now follow from Singleton bound.
 \end{proof}
 
 \begin{example}
 Our example code, $Gab_0[7,3,g]$ have a minimal rank distance $5$ and it can correct an error of weight $2$. 
 \end{example}
 
-\subsubsection*{Decoding generalized Gabidulin codes.}
+\subsubsection*{Decoding Reed--Solomon--Gabidulin codes.}
 
 To decode Gabidulin codes, we have a generalized Gao algorithm. Let $Gab_c[n,k,g]$ a gabidulin code and $b = \{b_1, \dots, b_n\} \in K^n$ a received vector. To decode $b$ we proceed as follows.
 
@@ -429,5 +556,18 @@ To decode Gabidulin codes, we have a generalized Gao algorithm. Let $Gab_c[n,k,g
 \item dire ce qu'on a implémenté
 \item donner quelques benchmarks
 \end{itemize}}
+
+\begin{thebibliography}{99}
+\bibitem{gabidulin}
+  Ernst Gabidulin,
+  \emph{Theory of codes with maximum rank distance},
+  Problemy Peredachi Informatsii \textbf{21} (1985), no.~1, 3--16.
+
+\bibitem{robert}
+  Gwezheneg Robert,
+  \emph{Codes de Gabidulin en caractéristique nulle : application au codage espace-temps},
+  PhD thesis (2015)
+
+\end{thebibliography}
 
 \end{document}
