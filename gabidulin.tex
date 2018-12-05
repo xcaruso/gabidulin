@@ -657,16 +657,17 @@ Wachter-Zeh and al. \cite{wachter} in the special case of usual Gabidulin
 codes. After what we have done previously, the extension to RSG codes 
 is not difficult.
 
-More precisely, Gao's algorithm consists in several steps that we will 
+Gao's algorithm consists in several steps that we will 
 present below. We suppose that we are given parameters $k$, $\bc$ and
 $\bg$ as above together with a codeword $c = \gamma_{k,\bc,\bg}(P)$
 for an Ore polynomial $P$ of degree less than $k$. 
-Let $w$ denote the ceiling of $\frac{n-k}2\rceil$ and 
-let $e \in K^{n_1} \times \cdots \times K^{n_m}$ be 
+Let $w$ denote the ceiling of $\frac{n-k}2$ and 
+let $e \in K^{n_1} \times \cdots \times K^{n_s}$ be 
 a vector of rank-Hamming weight at most $w$. We set $m = c + e$.
 
 \begin{example}[Thread example]
-We shall illustrate each step by the following continued example. As
+We shall illustrate each step of Gao's algorithm by the following 
+thread example. As
 in Example~\ref{eq:gamma2}, we take $K = \FF_3(t)$ (equipped with 
 $\theta = \id$ and $\partial = \frac d{dt}$), $k = 2$, $\bc = (0,1)$
 and $\bg = ((1,t,t^2),(1,t,t^2))$. The generator matrix of
@@ -738,6 +739,7 @@ $U \tilde P + V L = R$
 for Ore polynomials $U$, $V$ and $R$ with $\deg U \leq w$ and
 $\deg R < w+k$.
 
+\noindent
 This relation can be computed by applying the extended Euclidean 
 algorithm with the input $(\tilde P, L)$ and stopping it the first
 time the remainder $R$ has degree less than $w+k$.
@@ -778,7 +780,7 @@ $c$.
 
 \begin{proof}
 Set $D = R - UP = VL + U \cdot (\tilde P - P)$.
-A direct computation then shows that, for $1 \leq i \leq s$ and $1 \leq j 
+A direct computation shows that, for $1 \leq i \leq s$ and $1 \leq j 
 \leq n_i$, we have $\ev{c_i}(D)(g_{i,j}) = \ev{c_i}(U) (e_{i,j})$
 where $e_{i,j}$ denote the $(i,j)$ coordinate of the error vector $e$.
 From this, we derive
@@ -796,6 +798,7 @@ $D = 0$ and $R = UP$ as claimed.
 We compute the quotient $Q$ in the \emph{left} Euclidean division 
 of $R$ by $U$. 
 
+\noindent
 By Proposition \ref{prop:gao}, $c = \gamma_{k,\bc,\bg}(Q)$ and we 
 have decoded the message $m$.
 
