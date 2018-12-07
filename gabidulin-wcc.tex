@@ -11,13 +11,17 @@
 
 \definecolor{todo}{rgb}{0.9,0,0}
 
-\author{Caruso Xavier \and Durand Amaury}
-\institute{CNRS, Institut Mathématique de Bordeaux\\
-Rennes ? Versailles ? Besançon ?}
-
-\def\todo#1{{\color{todo} #1}}
-
 \title{Reed--Solomon--Gabidulin Codes}
+
+\author{Xavier Caruso\inst{1} \and Amaury Durand\inst{2}}
+
+\institute{%
+CNRS, Institut Mathématique de Bordeaux, équipe-projet LFANT\
+\email{xavier.caruso@normalesup.org}
+\and
+Université de Franche-Comté\
+\email{amaury.durand@edu.univ-fcomte.fr}}
+
 
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
@@ -46,12 +50,11 @@ Rennes ? Versailles ? Besançon ?}
 
 \section*{Introduction}
 
-% Delsarte, Gabidulin et Roth 
-
 Reed--Solomon codes form a well-known class of error detection and 
 correction codes which have very interesting properties (optimal minimal 
 distance, efficient decoding algorithms) and, for this reason, are 
-widely used in practice. In 1985, Gabidulin \cite{gabidulin} imagined an 
+widely used in practice. Independently, Delsarte \cite{delsarte},
+Gabidulin \cite{gabidulin} and Roth \cite{roth} imagined an 
 analogue of Reed--Solomon codes in the context of the rank distance . 
 Gabidulin's construction is based on the concept of linearized 
 polynomials over the finite fields. After this seminal work, several 
@@ -758,6 +761,11 @@ Ore polynomial $P$ we started with.
   \emph{Fast multiplication for skew polynomials},
   proceedings ISSAC 2017
 
+\bibitem{delsarte}
+  Philippe Delsarte, 
+  \emph{Bilinear Forms over a Finite Field with Applications to Coding Theory},
+  J. Combin. Theory \textbf{25} (1978), 226--241.
+
 \bibitem{gabidulin}
   Ernst Gabidulin,
   \emph{Theory of codes with maximum rank distance},
@@ -787,6 +795,11 @@ Ore polynomial $P$ we started with.
   Gwezheneg Robert,
   \emph{Codes de Gabidulin en caractéristique nulle : application au codage espace-temps},
   PhD thesis (2015)
+
+\bibitem{roth}
+  Ron Roth, 
+  \emph{Maximum-Rank Array Codes and their Application to Crisscross Error Correction}, 
+  IEEE Trans. Inform. Theory (1991)
 
 \bibitem{wachter}
   Antonia Wachter-Zeh,
