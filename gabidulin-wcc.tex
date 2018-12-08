@@ -9,8 +9,6 @@
 \usepackage[english]{babel}
 \usepackage{microtype}
 
-\definecolor{todo}{rgb}{0.9,0,0}
-
 \title{Reed--Solomon--Gabidulin Codes}
 
 \author{Xavier Caruso\inst{1} \and Amaury Durand\inst{2}}
@@ -52,29 +50,31 @@ Université de Franche-Comté\
 
 Reed--Solomon codes form a well-known class of error detection and 
 correction codes which have very interesting properties (optimal minimal 
-distance, efficient decoding algorithms) and, for this reason, are 
-widely used in practice. Independently, Delsarte \cite{delsarte},
-Gabidulin \cite{gabidulin} and Roth \cite{roth} imagined an 
-analogue of Reed--Solomon codes in the context of the rank distance . 
-Gabidulin's construction is based on the concept of linearized 
-polynomials over the finite fields. After this seminal work, several 
-authors generalized and optimized Gabidulin's code. In 2013, in her 
-thesis \cite{wachter} and subsequent papers, Wachter-Zeh proposed an 
+distance, efficient decoding algorithms). They were introduced in 1960 
+by Reed and Solomon and are nowadays widely used in everyday life. About 
+twenty years later, Delsarte~\cite{delsarte}, Gabidulin~\cite{gabidulin} 
+and Roth~\cite{roth}---independently---imagined an analogue of 
+Reed--Solomon codes in the context of the rank distance, which is finer 
+than the standard Hamming distance and well suited for some applications 
+(\emph{e.g.} network coding). These codes are nowadays called 
+\emph{Gabidulin codes}. Their construction is based on the concept of 
+linearized polynomials over the finite fields. More recently several 
+authors generalized and optimized Gabidulin codes. In 2013, in her 
+thesis~\cite{wachter} and subsequent papers, Wachter-Zeh proposed an 
 efficient implementation of operations with linearized polynomials, 
-together with an equivalent of Gao's algorithm for decoding Gabidulin 
-code. 
+together with an equivalent of Gao's decoding algorithm.
 
-In 2009, Boucher, Geiselmann and Ulmer \cite{bougeiulm} introduced 
+In 2009, Boucher, Geiselmann and Ulmer~\cite{bougeiulm} introduced 
 analogues of BCH codes in the Gabidulin's context of linearized 
-polynomials (\emph{cf} also \cite{bouulm}). 
+polynomials (\emph{cf} also~\cite{bouulm}). 
 It worths mentionning that Boucher and Ulmer use Ore 
-polynomials (introduced by Ore in 1933 in \cite{ore}) in place of 
+polynomials (introduced by Ore in 1933 in~\cite{ore}) in place of 
 linearized polynomials. Although the two approaches are equivalent in 
 the case of finite fields, it turns out that Ore polynomials are more 
 general objects which continue to make sense in a large variety of 
 settings.
 Taking advantage of this new point of view, Robert proposed in his
-PhD thesis \cite{robert} an extension of Gabidulin's code to the
+PhD thesis~\cite{robert} an extension of Gabidulin's code to the
 caracteristic zero, in which basically finite fields are replaced 
 by number fields.
 
@@ -167,7 +167,7 @@ with the two following examples:
 \begin{itemize}
 \renewcommand{\itemsep}{1ex}
 \item[(1)] (This setting is the one in which Gabidulin codes were
-first defined by Gabidulin in \cite{gabidulin}, with a slightly different
+first defined by Gabidulin in~\cite{gabidulin}, with a slightly different
 vocabulary.)
 Let $p$ be a prime number, $q$ be a power of $p$ and $r$
 be a positive integer. We let $\FF_{q^r}$ denote a finite field
@@ -180,7 +180,7 @@ extension $K/F$ is then $r$.
 endow it with a finite order automorphism $\theta$ and consider the
 Ore ring $K[X,\theta,0]$. Beyond the case of finite fields, natural
 examples are cyclotomic extensions of $\QQ$ or Kummer extensions.
-This case was addressed in Robert's thesis \cite{robert}.
+This case was addressed in Robert's thesis~\cite{robert}.
 \item[(2)] Let $k$ be a field of characteristic $p$. We consider the field 
 $K = k(t)$ and endow it with the natural derivation $\frac d{dt}$. We can 
 then form the Ore ring $k(t)[X,\id,\frac d{dt}]$. Here the subfield $F$ 
@@ -577,10 +577,10 @@ we have $\wrH(x) \leq \wH(x)$ if $\wH$ denotes the Hamming weight.
 \end{remark}
 
 The RSG codes we have defined extend the classical notion of Gabidulin 
-codes introduced in \cite{gabidulin}. More precisely, the latter correspond to 
+codes introduced in~\cite{gabidulin}. More precisely, the latter correspond to 
 the case where $s = 1$, $\partial = 0$ and $K$ is a finite field. 
 Relaxing the assumption on $K$, we obtain the generalized Gabidulin 
-codes defined by Robert in his thesis \cite{robert}. In particular, in this 
+codes defined by Robert in his thesis~\cite{robert}. In particular, in this 
 case, the rank-Hamming distance is the usual rank distance.
 
 On the other hand, when $\theta = \id$ and $\partial = 0$ (that is $F = 
@@ -604,8 +604,8 @@ then corrects any error of rank-Hamming weight at most $2$.
 \subsubsection*{Decoding Reed--Solomon--Gabidulin codes.}
 
 RSG codes can be decoded by a noncommutative extension of Gao's 
-algorithm \cite{gao}. This fact was already observed in the works of 
-Wachter-Zeh and al. \cite{wachter} in the special case of usual Gabidulin
+algorithm~\cite{gao}. This fact was already observed in the works of 
+Wachter-Zeh and al.~\cite{wachter} in the special case of usual Gabidulin
 codes. After what we have done previously, the extension to RSG codes 
 is not difficult.
 
@@ -640,9 +640,9 @@ We compute the Ore polynomial~$L$ defined in \eqref{eq:defL}.
 
 \noindent
 If a fast multiplication algorithm of Ore polynomials in available
-(which is notably the case when $\partial = 0$ \cite{pushwach,carleb}), 
+(which is notably the case when $\partial = 0$~\cite{pushwach,carleb}), 
 this computation can be done efficiently by a divide-and-conquer
-algorithm \cite{carleb}.
+algorithm~\cite{carleb}.
 
 We underline that this computation is independant of the received
 message $m$ and then has to be done just once when the RSG code is 
@@ -695,7 +695,7 @@ algorithm with the input $(\tilde P, L)$ and stopping it the first
 time the remainder $R$ has degree less than $w+k$.
 
 \begin{remark}
-Using the theory of resultants and subresultants \cite{li},
+Using the theory of resultants and subresultants~\cite{li},
 one can carry out this computation by controlling the degrees
 in $t$ of all intermediate polynomials.
 \end{remark}
