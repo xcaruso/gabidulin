@@ -297,7 +297,7 @@ $F$-linear (where $F$ is defined at the beginning of this section).
 Pseudo-linear morphisms are relevant in the context of Ore polynomials 
 because the Ore multiplication reflects the composition rule of 
 pseudo-linear morphisms. More precisely, given a pseudo-linear 
-endomorphism $u : M \to M$ and a Ore polynomial $P = \sum_i a_i X^i \in 
+endomorphism $u : M \to M$ and an Ore polynomial $P = \sum_i a_i X^i \in 
 K[X;\theta,\partial]$, one defines $P(u) = \sum_i a_i u^i$. One then 
 easily checks that $P(u) \circ Q(u) = (PQ)(u)$ where the multiplication 
 on the right hand size is the Ore multiplication. In other words, 
@@ -476,13 +476,13 @@ easily compute $a_{i,j} = c_i \cdot \Frob_q(g_{i,j}) \cdot g_{i,j}^{-1}
 \label{ex:aij2}
 Consider the setting~(2) of Example~\ref{ex:Ore}.
 By Example~\ref{ex:equiv} again, we can take any family $(c_1, \ldots, 
-c_s)$ of pairwise distinct polynomials. Moreover a basis of $k(t^p)$ 
-over $k(t)$ is obviously $(1, t, \ldots, t^{p-1})$. Therefore, we can 
+c_s)$ of pairwise distinct polynomials. Moreover a basis of $K(t^p)$ 
+over $K(t)$ is obviously $(1, t, \ldots, t^{p-1})$. Therefore, we can 
 take $n_i = p$ and $g_{i,j} = t^j$ for $0 \leq j < p$. A direct 
 computation leads to $a_{i,j} = \frac j t + c_i$. 
 
 \noindent
-Taking $k = \FF_3$, $k = 5$, $\bc = (0,1)$ and $\bg = 
+Taking $K = \FF_3$, $k = 5$, $\bc = (0,1)$ and $\bg = 
 ((1,t,t^2),(1,t,t^2))$, we find that the matrix of
 $\gamma_{k,\bc,\bg}$ is:
 \begin{equation}
@@ -535,10 +535,10 @@ In particular, when $s = q-1$, we get $L(X) = X^{r(q-1)} - 1$.
 \begin{example}
 \label{ex:L}
 Continuing Example~\ref{ex:aij2} and assuming further that the
-$c_i$'s lie in $k$, we find that the polynomial $L$ defined in
+$c_i$'s lie in $K$, we find that the polynomial $L$ defined in
 \eqref{eq:defL} is $L = \prod_{i=1}^s (X^p - c_i^p)$.
-In particular, if $k$ is a finite field of cardinality $q$ and
-the $c_i$'s enumerate the elements of $k$ (so that $s=q$), we
+In particular, if $K$ is a finite field of cardinality $q$ and
+the $c_i$'s enumerate the elements of $K$ (so that $s=q$), we
 have $L(X) = X^{pq} - X^p$.
 \end{example}}
 
