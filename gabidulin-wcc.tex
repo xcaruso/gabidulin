@@ -184,10 +184,11 @@ endow it with a finite order automorphism $\theta$ and consider the
 Ore ring $K[X,\theta,0]$. Beyond the case of finite fields, natural
 examples are cyclotomic extensions of $\QQ$ or Kummer extensions.
 This case was addressed in Robert's thesis~\cite{robert}.
-\item[(2)] Let $k$ be a field of characteristic $p$. We consider the field 
-$K = k(t)$ and endow it with the natural derivation $\frac d{dt}$. We can 
-then form the Ore ring $k(t)[X,\id,\frac d{dt}]$. Here the subfield $F$ 
-of $K$ is $k(t^p)$ and the degree of the extension $K/F$ is then $p$.
+\item[(2)] Let $\kappa$ be a field of characteristic $p$. We consider 
+the field $K = \kappa(t)$ and endow it with the natural derivation 
+$\frac d{dt}$. We can then form the Ore ring $\kappa(t)[X,\id,\frac 
+d{dt}]$. Here the subfield $F$ of $K$ is $\kappa(t^p)$ and the degree 
+of the extension $K/F$ is then $p$.
 \end{itemize}
 \end{example}}
 
@@ -256,22 +257,22 @@ uniquely but only up to an additive constant in $F$.
 \label{ex:centre}
 We continue Example \ref{ex:Ore}. In the settings~(1) and~(1'), it is 
 easily seen that the centre of $K[X;\theta,0]$ is $F[X^r]$.
-In the setting~(2), the centre of $k(t)[X; \id, \frac d{dt}]$ (where
-$k$ is a field of characteristic $p$) is $k(t^p)[X^p]$. 
+In the setting~(2), the centre of $\kappa(t)[X; \id, \frac d{dt}]$ (where
+$\kappa$ is a field of characteristic $p$) is $\kappa(t^p)[X^p]$. 
 %Let us prove
 %the latter assertion. First we observe that $t^p$ and $X^p$ are 
 %central elements. Indeed $t^p$ is central because its derivative
-%vanishes. On the other hand, for all $f \in k(t)$, iterating the 
+%vanishes. On the other hand, for all $f \in \kappa(t)$, iterating the 
 %Leibniz relation, we get:
 %$$f X^p = \sum_{i=0}^p \binom i p \frac{d^i f}{dt^i} X^{p-i}
 %= f X^p + \frac{d^p f}{dt^p}$$
 %and we check that the last term $\frac{d^p f}{dt^p}$ vanishes.
 %
 %\noindent
-%Conversely, let $P(X) = f_0 + f_1 X + \cdots + f_d X^d \in k(t)[X; 
+%Conversely, let $P(X) = f_0 + f_1 X + \cdots + f_d X^d \in \kappa(t)[X; 
 %\id, \frac d{dt}]$ be a central element. From $X P(X) = P(X) X$, we
 %derive $\frac {df_i}{dt} = 0$ for all $i$, for what it follows $f_i 
-%\in k(t^p)$ for all $i$. Up to subtracting to $P(X)$ a central element,
+%\in \kappa(t^p)$ for all $i$. Up to subtracting to $P(X)$ a central element,
 %we can assume without loss of generality that $a_i = 0$ as soon as 
 %$p$ divides $i$. Comparing the coefficients in $X^{d-1}$
 %in $t P(X)$ and $P(X) t$, we obtain $d f_d = 0$. Thus $f_d = 0$
@@ -399,7 +400,7 @@ not obvious.} that $N(f) = \frac {d^{p-1}f}{dt^{p-1}} + f^p$ for any $f
 \in k(t)$. Here, Lemma~\ref{lem:equiv} asserts that $N(f) = N(g)$ if
 and only if the difference $f-g$ is a logarithmic derivative.
 It is easily seen that a polynomial cannot be a logarithmic derivative.
-Consequently the elements of $k[t]$ are pairwise nonequivalent,
+Consequently the elements of $\kappa[t]$ are pairwise nonequivalent,
 implying in particular that there are infinitely many equivalence
 classes for this relation.
 \end{example}}
@@ -476,13 +477,13 @@ easily compute $a_{i,j} = c_i \cdot \Frob_q(g_{i,j}) \cdot g_{i,j}^{-1}
 \label{ex:aij2}
 Consider the setting~(2) of Example~\ref{ex:Ore}.
 By Example~\ref{ex:equiv} again, we can take any family $(c_1, \ldots, 
-c_s)$ of pairwise distinct polynomials. Moreover a basis of $K(t^p)$ 
-over $K(t)$ is obviously $(1, t, \ldots, t^{p-1})$. Therefore, we can 
+c_s)$ of pairwise distinct polynomials. Moreover a basis of $\kappa(t^p)$ 
+over $\kappa(t)$ is obviously $(1, t, \ldots, t^{p-1})$. Therefore, we can 
 take $n_i = p$ and $g_{i,j} = t^j$ for $0 \leq j < p$. A direct 
 computation leads to $a_{i,j} = \frac j t + c_i$. 
 
 \noindent
-Taking $K = \FF_3$, $k = 5$, $\bc = (0,1)$ and $\bg = 
+Taking $\kappa = \FF_3$, $k = 5$, $\bc = (0,1)$ and $\bg = 
 ((1,t,t^2),(1,t,t^2))$, we find that the matrix of
 $\gamma_{k,\bc,\bg}$ is:
 \begin{equation}
@@ -535,10 +536,10 @@ In particular, when $s = q-1$, we get $L(X) = X^{r(q-1)} - 1$.
 \begin{example}
 \label{ex:L}
 Continuing Example~\ref{ex:aij2} and assuming further that the
-$c_i$'s lie in $K$, we find that the polynomial $L$ defined in
+$c_i$'s lie in $\kappa$, we find that the polynomial $L$ defined in
 \eqref{eq:defL} is $L = \prod_{i=1}^s (X^p - c_i^p)$.
-In particular, if $K$ is a finite field of cardinality $q$ and
-the $c_i$'s enumerate the elements of $K$ (so that $s=q$), we
+In particular, if $\kappa$ is a finite field of cardinality $q$ and
+the $c_i$'s enumerate the elements of $\kappa$ (so that $s=q$), we
 have $L(X) = X^{pq} - X^p$.
 \end{example}}
 
